@@ -11,30 +11,30 @@ document.addEventListener("DOMContentLoaded", () => {
     const taskText = taskInput.value.trim();
 
     // Check if taskText is empty
-    if (taskText === "") {
+    if (taskText !== "") {
+      // Task Creation and Removal
+      const listItem = document.createElement("li"); // Create a new <li> element
+      listItem.textContent = taskText; // Set the task text
+
+      const removeButton = document.createElement("button"); // Create a remove button
+      removeButton.textContent = "Remove"; // Set button text
+      removeButton.className = "remove-btn"; // Add a class name for styling
+
+      // Assign an onclick event to remove the task
+      removeButton.onclick = () => {
+        taskList.removeChild(listItem); // Remove the <li> element from the list
+      };
+
+      // Append the remove button to the <li> and <li> to the <ul>
+      listItem.appendChild(removeButton);
+      taskList.appendChild(listItem);
+
+      // Clear the input field
+      taskInput.value = "";
+    } else {
       alert("Please enter a task.");
       return;
     }
-
-    // Task Creation and Removal
-    const listItem = document.createElement("li"); // Create a new <li> element
-    listItem.textContent = taskText; // Set the task text
-
-    const removeButton = document.createElement("button"); // Create a remove button
-    removeButton.textContent = "Remove"; // Set button text
-    removeButton.className = "remove-btn"; // Add a class name for styling
-
-    // Assign an onclick event to remove the task
-    removeButton.onclick = () => {
-      taskList.removeChild(listItem); // Remove the <li> element from the list
-    };
-
-    // Append the remove button to the <li> and <li> to the <ul>
-    listItem.appendChild(removeButton);
-    taskList.appendChild(listItem);
-
-    // Clear the input field
-    taskInput.value = "";
   }
 
   // Step 4: Attach Event Listeners
